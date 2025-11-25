@@ -2,8 +2,7 @@ class Repeller {
   constructor(x, y) {
     this.position = createVector(x, y);
     //{!1} How strong is the repeller?
-    this.mass = 20;
-    this.power = 150;
+    this.mass = 100;
     this.dragOffset = createVector(0, 0);
     this.dragging = false;
     this.rollover = false;
@@ -12,8 +11,8 @@ class Repeller {
   show() {
     stroke(0);
     strokeWeight(2);
-    fill(127);
-    circle(this.position.x, this.position.y, 32);
+    fill(200,100,100);
+    circle(this.position.x, this.position.y, this.mass);
   }
 
   getForce(particle) {
@@ -21,7 +20,7 @@ class Repeller {
     let force = p5.Vector.sub(this.position, particle.position);
     let distance = force.mag();
     distance = constrain(distance, 5, 50);
-    let strength = (-1 * this.power) / (distance * distance);
+    let strength = (-1 * this.mass) / (distance * distance);
     force.setMag(strength);
     return force;
   }
