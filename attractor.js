@@ -15,7 +15,7 @@ class Attractor {
     this.rollover = false;
   }
 
-  attract(m) {
+  getForce(m) {
     let force = p5.Vector.sub(this.position, m.position);
     let distance = force.mag();
     distance = constrain(distance, 5, 25);
