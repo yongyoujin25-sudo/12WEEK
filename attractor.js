@@ -15,7 +15,7 @@ class Attractor {
     this.rollover = false;
   }
 
-  calculateAttraction(m) {
+  attract(m) {
     let force = p5.Vector.sub(this.position, m.position);
     let distance = force.mag();
     distance = constrain(distance, 5, 25);
@@ -26,7 +26,7 @@ class Attractor {
   }
 
   // Method to display
-  display() {
+  show() {
     ellipseMode(CENTER);
     strokeWeight(4);
     stroke(0);

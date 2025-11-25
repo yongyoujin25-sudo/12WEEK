@@ -19,7 +19,7 @@ class Emitter {
 
   applyAttractor(attractor) {
     for (let particle of this.particles) {
-      let force = attractor.calculateAttraction(particle);
+      let force = attractor.attract(particle);
       particle.applyForce(force);
     }
   }
