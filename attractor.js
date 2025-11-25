@@ -7,7 +7,7 @@
 class Attractor {
 
   constructor() {
-    this.position = createVector(width / 2, height / 2);
+    this.position = createVector(width / 2 - 50, height / 2);
     this.mass = 20;
     this.G = 1;
     this.dragOffset = createVector(0, 0);
@@ -20,7 +20,7 @@ class Attractor {
     let distance = force.mag();
     distance = constrain(distance, 5, 25);
     force.normalize();
-    let strength = (this.G * this.mass * m.mass) / (distance * distance);
+    let strength = this.mass / (distance * distance);
     force.mult(strength);
     return force;
   }

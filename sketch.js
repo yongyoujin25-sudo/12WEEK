@@ -3,11 +3,13 @@ let emitter;
 
 //{!1} One repeller
 let repeller;
+let attractor;
 
 function setup() {
   createCanvas(640 , 240);
   emitter = new Emitter(width / 2, 60);
   repeller = new Repeller(width / 2, 250);
+  attractor = new Attractor();
 }
 
 function draw() {
@@ -18,7 +20,9 @@ function draw() {
   emitter.applyForce(gravity);
   //{!1} Applying the repeller
   emitter.applyRepeller(repeller);
+  emitter.applyAttractor(attractor);
   emitter.run();
 
   repeller.show();
+  attractor.display();
 }
