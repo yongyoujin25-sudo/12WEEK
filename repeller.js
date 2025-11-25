@@ -2,7 +2,11 @@ class Repeller {
   constructor(x, y) {
     this.position = createVector(x, y);
     //{!1} How strong is the repeller?
+    this.mass = 20;
     this.power = 150;
+    this.dragOffset = createVector(0, 0);
+    this.dragging = false;
+    this.rollover = false;
   }
 
   show() {
@@ -20,5 +24,35 @@ class Repeller {
     let strength = (-1 * this.power) / (distance * distance);
     force.setMag(strength);
     return force;
+  }
+
+  // The methods below are for mouse interaction
+  handlePress(mx, my) {
+    let d = dist(mx, my, this.position.x, this.position.y);
+    if (d < this.mass) {
+      this.dragging = true;
+      this.dragOffset.x = this.position.x - mx;
+      this.dragOffset.y = this.position.y - my;
+    }
+  }
+
+  handleHover(mx, my) {
+    let d = dist(mx, my, this.position.x, this.position.y);
+    if (d < this.mass) {
+      this.rollover = true;
+    } else {
+      this.rollover = false;
+    }
+  }
+
+  stopDragging() {
+    this.dragging = false;
+  }
+
+  handleDrag(mx, my) {
+    if (this.dragging) {
+      this.position.x = mx + this.dragOffset.x;
+      this.position.y = my + this.dragOffset.y;
+    }
   }
 }
